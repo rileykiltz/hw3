@@ -1,9 +1,80 @@
-<h1>Places I've Been</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
 
-<ul>
-  <% @places.each do |place| %>
-    <li><%= link_to place.name, place_path(place) %></li>
-  <% end %>
-</ul>
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-<%= link_to "New Place", new_place_path %>
+    .place-list {
+      list-style-type: none;
+      padding: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .place-list li {
+      background: #fff;
+      margin-bottom: 10px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s;
+    }
+
+    .place-list li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .place-list a {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 18px;
+    }
+
+    .place-list a:hover {
+      text-decoration: underline;
+    }
+
+    .links {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Places I've Been</h1>
+
+  <ul class="place-list">
+    <% @places.each do |place| %>
+      <li><%= link_to place.name, place_path(place) %></li>
+    <% end %>
+  </ul>
+
+  <div class="links">
+    <%= link_to "New Place", new_place_path %>
+  </div>
+</body>
+</html>

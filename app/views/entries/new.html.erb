@@ -1,22 +1,120 @@
-<h1>New Entry for <%= @place.name %></h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
 
-<%= form_with(model: [@place, @entry], local: true) do |form| %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group textarea:focus,
+    .form-group input[type="date"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .form-submit {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .form-submit:hover {
+      background-color: #0056b3;
+    }
+
+    .links {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .links a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>New Entry for <%= @place.name %></h1>
+
+  <div class="form-container">
+    <%= form_with(model: [@place, @entry], local: true) do |form| %>
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :posted_on %>
+        <%= form.date_field :posted_on %>
+      </div>
+
+      <div>
+        <%= form.submit "Create Entry", class: "form-submit" %>
+      </div>
+    <% end %>
   </div>
 
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="links">
+    <%= link_to "Back to #{@place.name}", place_path(@place) %>
   </div>
 
-  <div>
-    <%= form.label :posted_on %>
-    <%= form.date_field :posted_on %>
-  </div>
-
-  <%= form.submit "Create Entry" %>
-<% end %>
-
-<%= link_to "Back to #{@place.name}", place_path(@place) %>
+  
+</body>
+</html>
